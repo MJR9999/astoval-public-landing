@@ -87,33 +87,39 @@
         gap: 16px;
         padding: 14px 0;
       }
-      .brand {
+      .brandWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        min-width: 240px;
+      }
+      .brandRow {
         display: flex;
         align-items: center;
         gap: 14px;
-        min-width: 240px;
+        min-width: 0;
       }
-      .logoBox {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 220px;
-        height: 46px;
-        padding: 0 10px;
-        border: 2px solid var(--gold);
-        background: transparent;
-        color: var(--text);
-        font-size: 17px;
-        font-weight: 800;
-        letter-spacing: -0.1px;
+      .brandName {
+        font-size: 31px;
+        font-weight: 780;
+        letter-spacing: -0.55px;
+        color: rgba(255,255,255,0.96);
         white-space: nowrap;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+        line-height: 1;
       }
-      .brandText strong {
-        display: block;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.1px;
+      .brandDivider {
+        width: 52px;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.26), rgba(255,255,255,0.04));
+      }
+      .brandPayoff {
+        font-size: 12px;
+        font-weight: 560;
+        color: var(--accent);
+        letter-spacing: 0.75px;
+        text-transform: uppercase;
+        line-height: 1.2;
       }
       .navLinks {
         display: flex;
@@ -342,11 +348,14 @@
         :root { --h1: 52px; --h2: 32px; }
         .heroGrid, .caseStrip, .grid3, .pricingGrid, .faqGrid, .mockBody { grid-template-columns: 1fr; }
       }
-      @media (max-width: 640px) {
-        :root { --padX: 14px; --h1: 42px; --h2: 28px; --lead: 16px; }
+      @media (max-width: 820px) {
         .navInner { flex-wrap: wrap; align-items: flex-start; }
         .navLinks { width: 100%; justify-content: flex-start; }
-        .brand { min-width: 0; }
+      }
+      @media (max-width: 640px) {
+        :root { --padX: 14px; --h1: 42px; --h2: 28px; --lead: 16px; }
+        .brandName { font-size: 25px; }
+        .brandPayoff { letter-spacing: 0.45px; }
       }
     </style>
   </head>
@@ -354,11 +363,12 @@
     <div class="nav">
       <div class="container">
         <div class="navInner">
-          <div class="brand">
-            <div class="logoBox" aria-label="Astoval Consulting logo">Astoval Consulting</div>
-            <div class="brandText">
-              <strong>Where asset tokenization creates value</strong>
+          <div class="brandWrap">
+            <div class="brandRow">
+              <div class="brandName">Astoval Consulting</div>
+              <div class="brandDivider"></div>
             </div>
+            <div class="brandPayoff">Where asset tokenization creates value</div>
           </div>
 
           <div class="navLinks">
@@ -469,7 +479,7 @@
         <div class="frame">
           <p class="eyebrow">Engagement models</p>
           <h2>Three clear ways to buy Astoval Consulting</h2>
-          <p class="lead">This keeps the consulting-friendly commercial structure from the T-Value version while testing the stronger parent-brand feel of Astoval.</p>
+          <p class="lead">This keeps the consulting-friendly commercial structure while using the refined C3-style brand lockup in the header.</p>
           <div class="pricingGrid">
             <div class="priceCard"><div class="miniKicker">Sprint</div><h3>Discovery & qualification</h3><div class="price"><strong>2–3 weeks</strong><span>fixed-scope</span></div><p class="small">For early-stage tokenization opportunities that need fast strategic clarity.</p><ul class="mutedList"><li>Case framing</li><li>Credibility review</li><li>Initial pathway recommendation</li></ul></div>
             <div class="priceCard featured"><div class="miniKicker">Flagship</div><h3>Structuring & roadmap</h3><div class="price"><strong>4–8 weeks</strong><span>core advisory</span></div><p class="small">For teams that need structure options, roadmap sequencing, and partner/workstream alignment.</p><ul class="mutedList"><li>Design alternatives</li><li>Governance and workflow logic</li><li>Execution roadmap</li></ul></div>
@@ -499,7 +509,7 @@
         <div class="ctaPanel">
           <p class="eyebrow">Next step</p>
           <h2>Use Astoval Consulting as the executive-facing front door</h2>
-          <p class="lead">This version tests how the exact same website architecture feels with a broader, more corporate parent-brand name.</p>
+          <p class="lead">This version uses the refined C3-style header lockup that gives Astoval a more distinctive, elegant identity in the top bar.</p>
           <div class="btnRow">
             <a class="btn btnPrimary" href="mailto:michael@astoval.com?subject=Astoval%20Consulting%20website%20discussion">Use this direction →</a>
             <a class="btn" href="https://astoval.com" target="_blank" rel="noreferrer">astoval.com</a>
@@ -522,10 +532,10 @@
         const btn = document.getElementById('themeBtn');
         function setTheme(theme) {
           root.setAttribute('data-theme', theme);
-          localStorage.setItem('astoval_theme', theme);
+          localStorage.setItem('astoval_theme_final', theme);
           btn.textContent = theme === 'light' ? '☀️' : '🌙';
         }
-        const saved = localStorage.getItem('astoval_theme');
+        const saved = localStorage.getItem('astoval_theme_final');
         if (saved === 'light' || saved === 'dark') setTheme(saved); else setTheme('dark');
         btn.addEventListener('click', () => {
           const current = root.getAttribute('data-theme');
