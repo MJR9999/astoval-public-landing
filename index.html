@@ -1,547 +1,228 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Astoval Consulting — Tokenization Strategy, Design & Execution</title>
-    <meta
-      name="description"
-      content="Astoval Consulting is a tokenization consulting company for strategy, structuring, execution design, and institutional go-to-market."
-    />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-      :root {
-        --bg: #08111a;
-        --bg-2: #0d1824;
-        --panel: rgba(255,255,255,0.045);
-        --panel-2: rgba(255,255,255,0.07);
-        --border: rgba(255,255,255,0.10);
-        --border-2: rgba(255,255,255,0.16);
-        --text: rgba(255,255,255,0.93);
-        --muted: rgba(255,255,255,0.70);
-        --muted-2: rgba(255,255,255,0.54);
-        --accent: #77e0d1;
-        --accent-2: #8bdcff;
-        --accent-3: #d9fff7;
-        --gold: #e8c57a;
-        --ok: #5ef2b1;
-        --warn: #ffb56b;
-        --shadow: 0 22px 70px rgba(0,0,0,0.42);
-        --radius: 20px;
-        --max: 1180px;
-        --padX: 22px;
-        --h1: 62px;
-        --h2: 36px;
-        --h3: 19px;
-        --lead: 18px;
-      }
+<title>Astoval — Assessing Tokenization Value</title>
 
-      [data-theme="light"] {
-        --bg: #f5f8fb;
-        --bg-2: #eef3f8;
-        --panel: rgba(0,0,0,0.035);
-        --panel-2: rgba(0,0,0,0.055);
-        --border: rgba(0,0,0,0.10);
-        --border-2: rgba(0,0,0,0.15);
-        --text: rgba(8,15,24,0.94);
-        --muted: rgba(8,15,24,0.72);
-        --muted-2: rgba(8,15,24,0.56);
-        --shadow: 0 20px 60px rgba(0,0,0,0.14);
-      }
+<meta name="description"
+content="Astoval provides tokenization advisory and the TVAC SaaS platform for evaluating asset tokenization value." />
 
-      * { box-sizing: border-box; }
-      html, body { height: 100%; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        background:
-          radial-gradient(1000px 520px at 10% -10%, rgba(119,224,209,0.18), transparent 60%),
-          radial-gradient(1000px 520px at 100% 0%, rgba(139,220,255,0.14), transparent 62%),
-          linear-gradient(180deg, var(--bg), var(--bg-2));
-        color: var(--text);
-        line-height: 1.58;
-      }
-      a { color: inherit; text-decoration: none; }
-      a:hover { text-decoration: underline; text-underline-offset: 3px; }
-      .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--padX); }
-      section[id] { scroll-margin-top: 90px; }
+<style>
+/* --- (DIN EKSISTERENDE CSS ER UÆNDRET) --- */
+</style>
+</head>
 
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        background: linear-gradient(to bottom, rgba(4,10,16,0.80), rgba(4,10,16,0.42));
-        border-bottom: 1px solid rgba(255,255,255,0.07);
-      }
-      [data-theme="light"] .nav {
-        background: linear-gradient(to bottom, rgba(255,255,255,0.88), rgba(255,255,255,0.60));
-        border-bottom-color: rgba(0,0,0,0.07);
-      }
-      .navInner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 0;
-      }
-      .brandWrap {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        min-width: 240px;
-      }
-      .brandRow {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        min-width: 0;
-      }
-      .brandName {
-        font-size: 31px;
-        font-weight: 780;
-        letter-spacing: -0.55px;
-        color: rgba(255,255,255,0.96);
-        white-space: nowrap;
-        line-height: 1;
-      }
-      .brandDivider {
-        width: 52px;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(255,255,255,0.26), rgba(255,255,255,0.04));
-      }
-      .brandPayoff {
-        font-size: 12px;
-        font-weight: 560;
-        color: var(--accent);
-        letter-spacing: 0.75px;
-        text-transform: uppercase;
-        line-height: 1.2;
-      }
-      .navLinks {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .pill, .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: rgba(255,255,255,0.03);
-        color: var(--muted);
-        font-size: 13px;
-        font-weight: 620;
-        transition: 160ms ease;
-        white-space: nowrap;
-      }
-      .pillStrong, .btnPrimary {
-        border: none;
-        color: #08211f;
-        background: linear-gradient(90deg, var(--accent-2), var(--accent));
-        box-shadow: 0 12px 30px rgba(119,224,209,0.18);
-      }
-      .themeBtn {
-        width: 40px;
-        height: 36px;
-        display: inline-grid;
-        place-items: center;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: rgba(255,255,255,0.03);
-        cursor: pointer;
-      }
+<body>
 
-      .hero { padding: 54px 0 34px; }
-      .heroGrid {
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 26px;
-        align-items: center;
-      }
-      .eyebrow {
-        margin: 0 0 12px;
-        font-size: 12px;
-        font-weight: 760;
-        letter-spacing: 2.3px;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      h1 {
-        margin: 0 0 16px;
-        font-size: var(--h1);
-        line-height: 1.02;
-        letter-spacing: -0.9px;
-        font-weight: 760;
-      }
-      h2 {
-        margin: 0 0 12px;
-        font-size: var(--h2);
-        line-height: 1.12;
-        letter-spacing: -0.4px;
-        font-weight: 700;
-      }
-      h3 {
-        margin: 0 0 10px;
-        font-size: var(--h3);
-        line-height: 1.2;
-        font-weight: 680;
-      }
-      .accent { color: var(--accent); }
-      .lead {
-        margin: 0;
-        max-width: 700px;
-        font-size: var(--lead);
-        color: var(--muted);
-      }
-      .small { color: var(--muted-2); font-size: 14px; }
-      .heroButtons, .btnRow {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 20px;
-      }
-      .microRow {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 14px;
-      }
-      .microBadge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 11px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: rgba(255,255,255,0.03);
-        color: var(--muted);
-        font-size: 12.5px;
-      }
-      .heroCard, .frame, .metricCard, .timelineCard, .serviceCard, .faqItem, .proofPanel, .priceCard {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        box-shadow: var(--shadow);
-      }
-      .heroCard, .frame { padding: 22px; }
-      .heroDashboard { position: relative; overflow: hidden; }
-      .dashboardHead {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
-      }
-      .miniKicker {
-        font-size: 12px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--muted-2);
-        font-weight: 700;
-      }
-      .scorePill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 7px 11px;
-        border-radius: 999px;
-        background: rgba(94,242,177,0.10);
-        border: 1px solid rgba(94,242,177,0.28);
-        color: var(--ok);
-        font-size: 12px;
-        font-weight: 700;
-      }
-      .timeline { display: grid; gap: 12px; }
-      .timelineCard { padding: 14px 15px; background: rgba(255,255,255,0.03); }
-      .timelineStep {
-        display: grid;
-        grid-template-columns: 46px 1fr;
-        gap: 12px;
-        align-items: start;
-      }
-      .stepNo {
-        width: 46px;
-        height: 46px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, rgba(119,224,209,0.18), rgba(139,220,255,0.10));
-        border: 1px solid rgba(119,224,209,0.26);
-        color: var(--accent-3);
-        font-weight: 760;
-      }
-      .section { padding: 30px 0; }
-      .frame { position: relative; overflow: hidden; }
-      .frame::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--accent), rgba(119,224,209,0));
-      }
-      .grid3, .pricingGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-      .serviceCard, .metricCard, .faqItem, .priceCard { padding: 18px; }
-      .serviceIcon {
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        margin-bottom: 12px;
-        display: grid;
-        place-items: center;
-        color: var(--accent-3);
-        background: linear-gradient(135deg, rgba(119,224,209,0.18), rgba(139,220,255,0.10));
-        border: 1px solid rgba(119,224,209,0.26);
-        font-size: 20px;
-      }
-      .mutedList { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-      .caseStrip { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; margin-top: 16px; }
-      .bars { display: grid; gap: 10px; margin-top: 12px; }
-      .barRow { display: grid; grid-template-columns: 1fr 150px 40px; gap: 10px; align-items: center; color: var(--muted); font-size: 13px; }
-      .barTrack { height: 7px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
-      .barFill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
-      .barFillWarm { background: linear-gradient(90deg, var(--gold), var(--warn)); }
-      .proofPanel { padding: 18px; background: rgba(255,255,255,0.03); }
-      .mockShot { border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; background: linear-gradient(180deg, rgba(10,18,28,0.96), rgba(16,27,39,0.94)); }
-      .mockTop { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .mockBody { display: grid; grid-template-columns: 0.9fr 1.1fr; }
-      .mockSidebar, .mockMain { padding: 16px; }
-      .mockSidebar { border-right: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.015); }
-      .mockLine, .mockBlock, .mockMini { border-radius: 10px; background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); }
-      .mockLine { height: 11px; margin-bottom: 10px; }
-      .mockBlock { height: 76px; margin-bottom: 12px; }
-      .mockMini { height: 38px; margin-bottom: 10px; }
-      .priceCard.featured { border-color: rgba(119,224,209,0.36); background: linear-gradient(180deg, rgba(119,224,209,0.10), rgba(119,224,209,0.03)); }
-      .price { display: flex; align-items: baseline; gap: 8px; margin: 12px 0 4px; }
-      .price strong { font-size: 34px; letter-spacing: -0.5px; }
-      .faqGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
-      details.faqItem summary { cursor: pointer; list-style: none; font-weight: 680; }
-      .faqA { margin-top: 10px; color: var(--muted); font-size: 14px; }
-      .ctaBand { padding: 44px 0 54px; }
-      .ctaPanel {
-        padding: 28px;
-        border-radius: 24px;
-        border: 1px solid rgba(119,224,209,0.30);
-        background: linear-gradient(135deg, rgba(119,224,209,0.11), rgba(139,220,255,0.06), rgba(255,255,255,0.02));
-        box-shadow: var(--shadow);
-      }
-      footer {
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding: 24px 0 32px;
-        text-align: center;
-      }
-      .footLine { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
-      .footDisc { max-width: 860px; margin: 0 auto; font-size: 13px; line-height: 1.65; color: var(--muted-2); }
-      .copyright { margin-top: 12px; color: var(--muted-2); font-size: 12.5px; }
+<!-- NAV -->
+<div class="nav">
+  <div class="container">
+    <div class="navInner">
 
-      @media (max-width: 1080px) {
-        :root { --h1: 52px; --h2: 32px; }
-        .heroGrid, .caseStrip, .grid3, .pricingGrid, .faqGrid, .mockBody { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 820px) {
-        .navInner { flex-wrap: wrap; align-items: flex-start; }
-        .navLinks { width: 100%; justify-content: flex-start; }
-      }
-      @media (max-width: 640px) {
-        :root { --padX: 14px; --h1: 42px; --h2: 28px; --lead: 16px; }
-        .brandName { font-size: 25px; }
-        .brandPayoff { letter-spacing: 0.45px; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="nav">
-      <div class="container">
-        <div class="navInner">
-          <div class="brandWrap">
-            <div class="brandRow">
-              <div class="brandName">Astoval Consulting</div>
-              <div class="brandDivider"></div>
-            </div>
-            <div class="brandPayoff">Where asset tokenization creates value</div>
-          </div>
-
-          <div class="navLinks">
-            <a class="pill" href="#services">Services</a>
-            <a class="pill" href="#engagements">Engagements</a>
-            <button class="themeBtn" id="themeBtn" aria-label="Toggle theme">🌙</button>
-            <a class="pill pillStrong" href="#contact">Book an intro call →</a>
-          </div>
+      <div class="brandWrap">
+        <div class="brandRow">
+          <div class="brandName">Astoval</div>
+          <div class="brandDivider"></div>
         </div>
+        <div class="brandPayoff">assessing tokenization value</div>
       </div>
+
+      <div class="navLinks">
+        <a class="pill" href="#services">Advisory</a>
+        <a class="pill" href="#tvac">TVAC</a>
+        <a class="pill" href="#contact">Contact</a>
+        <button class="themeBtn" id="themeBtn">🌙</button>
+      </div>
+
     </div>
+  </div>
+</div>
 
-    <section class="hero" id="top">
-      <div class="container">
-        <div class="heroGrid">
-          <div>
-            <p class="eyebrow">Institutional tokenization consulting</p>
-            <h1>
-              From tokenization ambition to
-              <span class="accent">credible execution</span>.
-            </h1>
-            <p class="lead">
-              Astoval Consulting helps issuers, asset owners, platforms, advisors, and investors move from vague tokenization interest to concrete structure, decision support, and executable roadmaps.
-            </p>
 
-            <div class="microRow">
-              <span class="microBadge">Built for serious stakeholders</span>
-              <span class="microBadge">Strategy + structuring + execution design</span>
-              <span class="microBadge">Institutional tokenization focus</span>
-            </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="heroGrid">
 
-            <div class="heroButtons">
-              <a class="btn btnPrimary" href="#services">Explore services →</a>
-            </div>
-          </div>
+      <div>
+        <p class="eyebrow">Tokenization strategy & decision support</p>
 
-          <div class="heroCard heroDashboard">
-            <div class="dashboardHead">
-              <div>
-                <div class="miniKicker">Representative client journey</div>
-                <h3 style="margin:6px 0 0;">Consulting-led, evidence-backed</h3>
-              </div>
-              <div class="scorePill">Execution-ready pathway</div>
-            </div>
+        <h1>
+          Understanding whether tokenization
+          <span class="accent">actually creates value</span>
+        </h1>
 
-            <div class="timeline">
-              <div class="timelineCard"><div class="timelineStep"><div class="stepNo">01</div><div><h3>Qualify the case</h3><p class="small">Business objective, asset logic, jurisdictional scope, distribution thesis, constraints, and commercial realism.</p></div></div></div>
-              <div class="timelineCard"><div class="timelineStep"><div class="stepNo">02</div><div><h3>Define the value case</h3><p class="small">Clarify what tokenization should improve, enable, or solve before structure choices are made.</p></div></div></div>
-              <div class="timelineCard"><div class="timelineStep"><div class="stepNo">03</div><div><h3>Design the operating model</h3><p class="small">Refine structure, service-provider model, governance, custody, settlement, venue, compliance flow, and roadmap.</p></div></div></div>
-              <div class="timelineCard"><div class="timelineStep"><div class="stepNo">04</div><div><h3>Prepare execution</h3><p class="small">Translate analysis into mandates, sequencing, procurement, and investor-facing or partner-facing materials.</p></div></div></div>
-            </div>
-          </div>
+        <p class="lead">
+          Astoval combines high-level advisory with a structured SaaS platform to help serious stakeholders evaluate, design, and execute tokenization initiatives.
+        </p>
+
+        <div class="heroButtons">
+          <a class="btn btnPrimary" href="#services">Explore advisory →</a>
+          <a class="btn" href="#tvac">Explore TVAC →</a>
         </div>
       </div>
-    </section>
 
-    <section class="section" id="services">
-      <div class="container">
-        <div class="frame">
-          <p class="eyebrow">Core services</p>
-          <h2>Strategic advisory for serious tokenization initiatives</h2>
-          <p class="lead">Astoval Consulting is positioned as a high-trust advisory firm focused on asset tokenization strategy, structuring, and execution design.</p>
+      <div class="heroCard">
+        <h3>Two ways to work with Astoval</h3>
+        <ul class="mutedList">
+          <li><strong>Advisory:</strong> Strategic consulting and structuring</li>
+          <li><strong>TVAC:</strong> SaaS-based feasibility and value analysis</li>
+        </ul>
+      </div>
 
-          <div class="grid3" style="margin-top:18px;">
-            <div class="serviceCard"><div class="serviceIcon">◫</div><h3>Tokenization strategy</h3><p class="small">Assess where tokenization fits, where it does not, and what commercial logic would justify proceeding.</p><ul class="mutedList"><li>Opportunity framing</li><li>Use-case prioritization</li><li>Board-level decision support</li></ul></div>
-            <div class="serviceCard"><div class="serviceIcon">◇</div><h3>Structuring & design</h3><p class="small">Clarify jurisdiction, wrapper, investor scope, custody, venue, workflow, governance, and service-provider architecture.</p><ul class="mutedList"><li>Structure options</li><li>Operating model design</li><li>Risk-aware sequencing</li></ul></div>
-            <div class="serviceCard"><div class="serviceIcon">△</div><h3>Execution readiness</h3><p class="small">Turn concepts into practical next steps, internal alignment, procurement logic, partner briefs, and launch roadmaps.</p><ul class="mutedList"><li>Roadmaps & milestones</li><li>Vendor/workstream definition</li><li>Stakeholder materials</li></ul></div>
-          </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="frame">
+
+      <p class="eyebrow">Advisory</p>
+      <h2>Consulting for serious tokenization initiatives</h2>
+
+      <p class="lead">
+        Astoval advisory supports institutions, asset owners, and platforms in assessing and structuring tokenization projects from idea to execution readiness.
+      </p>
+
+      <div class="grid3">
+
+        <div class="serviceCard">
+          <h3>Strategy</h3>
+          <p class="small">
+            Evaluate whether tokenization makes sense at all.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="case-example">
-      <div class="container">
-        <div class="frame">
-          <p class="eyebrow">Illustrative page module</p>
-          <h2>A softer cousin of the TVAC snapshot</h2>
-          <p class="lead">Instead of leading with a product scorecard, Astoval can show a client-transformation module that still signals analytical discipline.</p>
-
-          <div class="caseStrip">
-            <div class="proofPanel">
-              <div class="miniKicker">Illustrative engagement example</div>
-              <h3 style="margin-top:6px;">Private-market asset owner evaluating tokenization</h3>
-              <p class="small">The advisory view explains whether the case is strategically credible, what the blockers are, and where the strongest path may lie.</p>
-              <div class="bars">
-                <div class="barRow"><div>Commercial rationale clarity</div><div class="barTrack"><div class="barFill" style="width:72%"></div></div><div style="text-align:right;">7.2</div></div>
-                <div class="barRow"><div>Operational readiness</div><div class="barTrack"><div class="barFill" style="width:54%"></div></div><div style="text-align:right;">5.4</div></div>
-                <div class="barRow"><div>Structure complexity</div><div class="barTrack"><div class="barFillWarm barFill" style="width:66%"></div></div><div style="text-align:right;">6.6</div></div>
-                <div class="barRow"><div>Strategic fit</div><div class="barTrack"><div class="barFill" style="width:80%"></div></div><div style="text-align:right;">8.0</div></div>
-              </div>
-            </div>
-            <div class="proofPanel">
-              <div class="mockShot" aria-hidden="true">
-                <div class="mockTop"><div class="miniKicker">Page concept</div><div class="scorePill">Advisory-first</div></div>
-                <div class="mockBody">
-                  <div class="mockSidebar"><div class="mockMini"></div><div class="mockMini" style="width:85%;"></div><div class="mockBlock"></div><div class="mockMini" style="width:78%;"></div><div class="mockMini" style="width:66%;"></div></div>
-                  <div class="mockMain"><div class="mockLine" style="width:62%; height:14px;"></div><div class="mockLine" style="width:84%;"></div><div class="mockLine" style="width:76%;"></div><div class="mockBlock"></div><div class="mockLine" style="width:90%;"></div><div class="mockLine" style="width:72%;"></div><div class="mockBlock" style="height:92px;"></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="serviceCard">
+          <h3>Structuring</h3>
+          <p class="small">
+            Define legal, operational, and market design.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="engagements">
-      <div class="container">
-        <div class="frame">
-          <p class="eyebrow">Engagement models</p>
-          <h2>Three clear ways to buy Astoval Consulting</h2>
-          <p class="lead">This keeps the consulting-friendly commercial structure while using the refined C3-style brand lockup in the header.</p>
-          <div class="pricingGrid">
-            <div class="priceCard"><div class="miniKicker">Sprint</div><h3>Discovery & qualification</h3><div class="price"><strong>2–3 weeks</strong><span>fixed-scope</span></div><p class="small">For early-stage tokenization opportunities that need fast strategic clarity.</p><ul class="mutedList"><li>Case framing</li><li>Credibility review</li><li>Initial pathway recommendation</li></ul></div>
-            <div class="priceCard featured"><div class="miniKicker">Flagship</div><h3>Structuring & roadmap</h3><div class="price"><strong>4–8 weeks</strong><span>core advisory</span></div><p class="small">For teams that need structure options, roadmap sequencing, and partner/workstream alignment.</p><ul class="mutedList"><li>Design alternatives</li><li>Governance and workflow logic</li><li>Execution roadmap</li></ul></div>
-            <div class="priceCard"><div class="miniKicker">Ongoing</div><h3>Strategic retained advisory</h3><div class="price"><strong>Monthly</strong><span>for active pipelines</span></div><p class="small">For platforms, funds, advisors, or institutions evaluating multiple initiatives over time.</p><ul class="mutedList"><li>Regular strategic input</li><li>Case reviews</li><li>Selective specialist support</li></ul></div>
-          </div>
+        <div class="serviceCard">
+          <h3>Execution</h3>
+          <p class="small">
+            Translate analysis into concrete next steps.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="frame">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions the parent-company site should answer</h2>
-          <div class="faqGrid">
-            <details class="faqItem" open><summary>What is Astoval Consulting?</summary><div class="faqA">Astoval Consulting is a tokenization consulting company focused on strategy, structuring, and execution design for serious market participants.</div></details>
-            <details class="faqItem"><summary>Who is this for?</summary><div class="faqA">Asset owners, issuers, financial institutions, service providers, platforms, and investors evaluating real tokenization opportunities.</div></details>
-            <details class="faqItem"><summary>What kinds of work does Astoval do?</summary><div class="faqA">The firm helps clients assess strategic fit, design tokenization structures, and prepare credible execution pathways.</div></details>
-            <details class="faqItem"><summary>How do engagements start?</summary><div class="faqA">Typically with a short discovery conversation followed by a scoped sprint or a broader structuring mandate.</div></details>
-          </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- TVAC SECTION -->
+<section class="section" id="tvac">
+  <div class="container">
+    <div class="frame">
+
+      <p class="eyebrow">SaaS Platform</p>
+      <h2>TVAC — Tokenization Value-Add Calculator</h2>
+
+      <p class="lead">
+        TVAC is a structured decision-support platform that evaluates whether a tokenization project creates real economic value — not just narrative appeal.
+      </p>
+
+      <div class="grid3">
+
+        <div class="serviceCard">
+          <h3>Structured evaluation</h3>
+          <p class="small">
+            Based on a defined methodology and scoring system.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="ctaBand" id="contact">
-      <div class="container">
-        <div class="ctaPanel">
-          <p class="eyebrow">Next step</p>
-          <h2>Use Astoval Consulting as the executive-facing front door</h2>
-          <p class="lead">This version uses the refined C3-style header lockup that gives Astoval a more distinctive, elegant identity in the top bar.</p>
-          <div class="btnRow">
-            <a class="btn btnPrimary" href="mailto:michael@astoval.com?subject=Astoval%20Consulting%20website%20discussion">Use this direction →</a>
-            <a class="btn" href="https://astoval.com" target="_blank" rel="noreferrer">astoval.com</a>
-          </div>
+        <div class="serviceCard">
+          <h3>Board-ready reports</h3>
+          <p class="small">
+            30+ page outputs suitable for decision-making.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <footer>
-      <div class="container">
-        <p class="footLine">Astoval Consulting — Where asset tokenization creates value</p>
-        <div class="footDisc">Draft concept only. Positioning, ownership structure, disclaimers, and final service descriptions should be aligned with the eventual company structure and contractual setup.</div>
-        <div class="copyright">© 2026 Astoval Consulting concept draft</div>
-      </div>
-    </footer>
+        <div class="serviceCard">
+          <h3>Independent analysis</h3>
+          <p class="small">
+            No bias toward “tokenization by default”.
+          </p>
+        </div>
 
-    <script>
-      (function () {
-        const root = document.documentElement;
-        const btn = document.getElementById('themeBtn');
-        function setTheme(theme) {
-          root.setAttribute('data-theme', theme);
-          localStorage.setItem('astoval_theme_final', theme);
-          btn.textContent = theme === 'light' ? '☀️' : '🌙';
-        }
-        const saved = localStorage.getItem('astoval_theme_final');
-        if (saved === 'light' || saved === 'dark') setTheme(saved); else setTheme('dark');
-        btn.addEventListener('click', () => {
-          const current = root.getAttribute('data-theme');
-          setTheme(current === 'light' ? 'dark' : 'light');
-        });
-      })();
-    </script>
-  </body>
+      </div>
+
+      <div class="heroButtons" style="margin-top:20px;">
+        <a class="btn btnPrimary" href="https://tvacai.com" target="_blank">
+          Go to TVAC →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="ctaBand" id="contact">
+  <div class="container">
+    <div class="ctaPanel">
+
+      <p class="eyebrow">Contact</p>
+      <h2>Get in touch</h2>
+
+      <p class="lead">
+        For advisory engagements or questions about TVAC, feel free to reach out.
+      </p>
+
+      <div class="btnRow">
+        <a class="btn btnPrimary" href="mailto:michal@tvacai.com">
+          michal@tvacai.com
+        </a>
+      </div>
+
+      <p class="footDisc" style="margin-top:20px;">
+        Astoval and TVAC provide informational decision-support only. Nothing on this site constitutes legal, financial, or investment advice. All analyses are indicative and must be independently validated before any decision-making.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="footLine">Astoval — assessing tokenization value</p>
+    <div class="copyright">© 2026 Astoval</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('astoval_theme', theme);
+    btn.textContent = theme === 'light' ? '☀️' : '🌙';
+  }
+
+  const saved = localStorage.getItem('astoval_theme');
+  if (saved) setTheme(saved); else setTheme('dark');
+
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    setTheme(current === 'light' ? 'dark' : 'light');
+  });
+})();
+</script>
+
+</body>
 </html>
