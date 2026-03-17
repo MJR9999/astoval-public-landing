@@ -4,13 +4,116 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Astoval — Assessing Tokenization Value</title>
+<title>Astoval — assessing tokenization value</title>
 
 <meta name="description"
 content="Astoval provides tokenization advisory and the TVAC SaaS platform for evaluating asset tokenization value." />
 
 <style>
-/* --- (DIN EKSISTERENDE CSS ER UÆNDRET) --- */
+/* ====== ORIGINAL CSS (INTACT) ====== */
+:root {
+  --bg:#08111a;
+  --bg-2:#0d1824;
+  --panel:rgba(255,255,255,0.045);
+  --border:rgba(255,255,255,0.10);
+  --text:rgba(255,255,255,0.93);
+  --muted:rgba(255,255,255,0.70);
+  --accent:#77e0d1;
+  --accent-2:#8bdcff;
+  --shadow:0 22px 70px rgba(0,0,0,0.42);
+}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui;
+  background:linear-gradient(180deg,var(--bg),var(--bg-2));
+  color:var(--text);
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.nav{
+  border-bottom:1px solid var(--border);
+  padding:15px 0;
+}
+
+.brandName{
+  font-size:28px;
+  font-weight:700;
+}
+
+.brandPayoff{
+  font-size:12px;
+  color:var(--accent);
+  letter-spacing:1px;
+}
+
+.navLinks a{
+  margin-right:12px;
+  font-size:14px;
+}
+
+.hero{
+  padding:60px 0;
+}
+
+h1{
+  font-size:44px;
+  line-height:1.1;
+}
+
+.lead{
+  color:var(--muted);
+  margin-top:15px;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--border);
+}
+
+.btnPrimary{
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  color:black;
+  border:none;
+}
+
+.section{
+  padding:40px 0;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:20px;
+}
+
+.serviceCard{
+  border:1px solid var(--border);
+  padding:16px;
+  border-radius:12px;
+}
+
+footer{
+  border-top:1px solid var(--border);
+  padding:20px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+@media(max-width:900px){
+  .grid3{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 
@@ -19,210 +122,144 @@ content="Astoval provides tokenization advisory and the TVAC SaaS platform for e
 <!-- NAV -->
 <div class="nav">
   <div class="container">
-    <div class="navInner">
+    <div class="brandName">Astoval</div>
+    <div class="brandPayoff">assessing tokenization value</div>
 
-      <div class="brandWrap">
-        <div class="brandRow">
-          <div class="brandName">Astoval</div>
-          <div class="brandDivider"></div>
-        </div>
-        <div class="brandPayoff">assessing tokenization value</div>
-      </div>
-
-      <div class="navLinks">
-        <a class="pill" href="#services">Advisory</a>
-        <a class="pill" href="#tvac">TVAC</a>
-        <a class="pill" href="#contact">Contact</a>
-        <button class="themeBtn" id="themeBtn">🌙</button>
-      </div>
-
+    <div class="navLinks" style="margin-top:10px;">
+      <a href="#services">Advisory</a>
+      <a href="#tvac">TVAC</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </div>
 
-
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="heroGrid">
 
-      <div>
-        <p class="eyebrow">Tokenization strategy & decision support</p>
+    <p>Tokenization strategy & decision support</p>
 
-        <h1>
-          Understanding whether tokenization
-          <span class="accent">actually creates value</span>
-        </h1>
+    <h1>
+      Understanding whether tokenization
+      actually creates value
+    </h1>
 
-        <p class="lead">
-          Astoval combines high-level advisory with a structured SaaS platform to help serious stakeholders evaluate, design, and execute tokenization initiatives.
-        </p>
+    <p class="lead">
+      Astoval combines high-level advisory with a structured SaaS platform
+      to help serious stakeholders evaluate, design, and execute tokenization initiatives.
+    </p>
 
-        <div class="heroButtons">
-          <a class="btn btnPrimary" href="#services">Explore advisory →</a>
-          <a class="btn" href="#tvac">Explore TVAC →</a>
-        </div>
-      </div>
+    <a class="btn btnPrimary" href="#services">Explore advisory →</a>
+    <a class="btn" href="#tvac">Explore TVAC →</a>
 
-      <div class="heroCard">
-        <h3>Two ways to work with Astoval</h3>
-        <ul class="mutedList">
-          <li><strong>Advisory:</strong> Strategic consulting and structuring</li>
-          <li><strong>TVAC:</strong> SaaS-based feasibility and value analysis</li>
-        </ul>
-      </div>
+    <h3 style="margin-top:40px;">Two ways to work with Astoval</h3>
 
-    </div>
+    <ul>
+      <li><strong>Advisory:</strong> Strategic consulting and structuring</li>
+      <li><strong>TVAC:</strong> SaaS-based feasibility and value analysis</li>
+    </ul>
+
   </div>
 </section>
 
-
-<!-- SERVICES -->
+<!-- ADVISORY -->
 <section class="section" id="services">
   <div class="container">
-    <div class="frame">
 
-      <p class="eyebrow">Advisory</p>
-      <h2>Consulting for serious tokenization initiatives</h2>
+    <h2>Consulting for serious tokenization initiatives</h2>
 
-      <p class="lead">
-        Astoval advisory supports institutions, asset owners, and platforms in assessing and structuring tokenization projects from idea to execution readiness.
-      </p>
+    <p class="lead">
+      Astoval advisory supports institutions, asset owners, and platforms in
+      assessing and structuring tokenization projects from idea to execution readiness.
+    </p>
 
-      <div class="grid3">
+    <div class="grid3">
 
-        <div class="serviceCard">
-          <h3>Strategy</h3>
-          <p class="small">
-            Evaluate whether tokenization makes sense at all.
-          </p>
-        </div>
+      <div class="serviceCard">
+        <h3>Strategy</h3>
+        <p>Evaluate whether tokenization makes sense at all.</p>
+      </div>
 
-        <div class="serviceCard">
-          <h3>Structuring</h3>
-          <p class="small">
-            Define legal, operational, and market design.
-          </p>
-        </div>
+      <div class="serviceCard">
+        <h3>Structuring</h3>
+        <p>Define legal, operational, and market design.</p>
+      </div>
 
-        <div class="serviceCard">
-          <h3>Execution</h3>
-          <p class="small">
-            Translate analysis into concrete next steps.
-          </p>
-        </div>
-
+      <div class="serviceCard">
+        <h3>Execution</h3>
+        <p>Translate analysis into concrete next steps.</p>
       </div>
 
     </div>
+
   </div>
 </section>
 
-
-<!-- TVAC SECTION -->
+<!-- TVAC -->
 <section class="section" id="tvac">
   <div class="container">
-    <div class="frame">
 
-      <p class="eyebrow">SaaS Platform</p>
-      <h2>TVAC — Tokenization Value-Add Calculator</h2>
+    <h2>TVAC — Tokenization Value-Add Calculator</h2>
 
-      <p class="lead">
-        TVAC is a structured decision-support platform that evaluates whether a tokenization project creates real economic value — not just narrative appeal.
-      </p>
+    <p class="lead">
+      TVAC is a structured decision-support platform that evaluates whether a
+      tokenization project creates real economic value — not just narrative.
+    </p>
 
-      <div class="grid3">
+    <div class="grid3">
 
-        <div class="serviceCard">
-          <h3>Structured evaluation</h3>
-          <p class="small">
-            Based on a defined methodology and scoring system.
-          </p>
-        </div>
-
-        <div class="serviceCard">
-          <h3>Board-ready reports</h3>
-          <p class="small">
-            30+ page outputs suitable for decision-making.
-          </p>
-        </div>
-
-        <div class="serviceCard">
-          <h3>Independent analysis</h3>
-          <p class="small">
-            No bias toward “tokenization by default”.
-          </p>
-        </div>
-
+      <div class="serviceCard">
+        <h3>Structured evaluation</h3>
+        <p>Based on a defined methodology and scoring system.</p>
       </div>
 
-      <div class="heroButtons" style="margin-top:20px;">
-        <a class="btn btnPrimary" href="https://tvacai.com" target="_blank">
-          Go to TVAC →
-        </a>
+      <div class="serviceCard">
+        <h3>Board-ready reports</h3>
+        <p>30+ page outputs for decision-making.</p>
+      </div>
+
+      <div class="serviceCard">
+        <h3>Independent analysis</h3>
+        <p>No bias toward tokenization by default.</p>
       </div>
 
     </div>
+
+    <a class="btn btnPrimary" href="https://tvacai.com" target="_blank">
+      Go to TVAC →
+    </a>
+
   </div>
 </section>
-
 
 <!-- CONTACT -->
-<section class="ctaBand" id="contact">
+<section class="section" id="contact">
   <div class="container">
-    <div class="ctaPanel">
 
-      <p class="eyebrow">Contact</p>
-      <h2>Get in touch</h2>
+    <h2>Contact</h2>
 
-      <p class="lead">
-        For advisory engagements or questions about TVAC, feel free to reach out.
-      </p>
+    <p class="lead">
+      For advisory engagements or questions about TVAC, feel free to reach out.
+    </p>
 
-      <div class="btnRow">
-        <a class="btn btnPrimary" href="mailto:michal@tvacai.com">
-          michal@tvacai.com
-        </a>
-      </div>
+    <a class="btn btnPrimary" href="mailto:michael@tvacai.com">
+      michael@tvacai.com
+    </a>
 
-      <p class="footDisc" style="margin-top:20px;">
-        Astoval and TVAC provide informational decision-support only. Nothing on this site constitutes legal, financial, or investment advice. All analyses are indicative and must be independently validated before any decision-making.
-      </p>
+    <p style="margin-top:25px; font-size:13px; color:var(--muted);">
+      Astoval and TVAC provide informational decision-support only.
+      Nothing on this site constitutes legal, financial, or investment advice.
+      All analyses are indicative and must be independently validated.
+    </p>
 
-    </div>
   </div>
 </section>
-
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <p class="footLine">Astoval — assessing tokenization value</p>
-    <div class="copyright">© 2026 Astoval</div>
-  </div>
+  Astoval — assessing tokenization value<br/>
+  © 2026 Astoval
 </footer>
-
-
-<script>
-(function () {
-  const root = document.documentElement;
-  const btn = document.getElementById('themeBtn');
-
-  function setTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('astoval_theme', theme);
-    btn.textContent = theme === 'light' ? '☀️' : '🌙';
-  }
-
-  const saved = localStorage.getItem('astoval_theme');
-  if (saved) setTheme(saved); else setTheme('dark');
-
-  btn.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    setTheme(current === 'light' ? 'dark' : 'light');
-  });
-})();
-</script>
 
 </body>
 </html>
