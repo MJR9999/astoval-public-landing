@@ -1,6 +1,61 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
+<script>
+(function () {
+  // ===== SETTINGS =====
+  const SITE_LIVE = false; // false = slukket | true = tændt
+  const PASSWORD = "menu123"; // skift selv hvis du vil
+  const ALLOW_PREVIEW_PARAM = "preview"; // ?preview=1 giver adgang
+
+  // ===== LOGIC =====
+  const params = new URLSearchParams(window.location.search);
+  const previewAccess = params.get(ALLOW_PREVIEW_PARAM) === "1";
+
+  if (SITE_LIVE || previewAccess) return;
+
+  let authorized = false;
+
+  try {
+    const input = prompt("Private preview – enter password:");
+    if (input === PASSWORD) {
+      authorized = true;
+    }
+  } catch (e) {}
+
+  if (!authorized) {
+    document.documentElement.innerHTML = `
+      <html>
+        <head>
+          <title>Astoval – Private Preview</title>
+          <meta name="robots" content="noindex, nofollow">
+          <style>
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+              text-align: center;
+              padding: 100px 20px;
+              background: #0f1720;
+              color: #ffffff;
+            }
+            h1 {
+              font-size: 32px;
+              margin-bottom: 10px;
+            }
+            p {
+              opacity: 0.72;
+              font-size: 16px;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Astoval is currently in private preview</h1>
+          <p>Access is restricted</p>
+        </body>
+      </html>
+    `;
+  }
+})();
+</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Astoval — Assessing Tokenization Value</title>
