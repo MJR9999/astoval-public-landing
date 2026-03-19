@@ -11,8 +11,8 @@
 
     <style>
       :root {
-        --bg: #08111a;
-        --bg-2: #0d1824;
+        --bg: #101822;
+        --bg-2: #182430;
         --panel: rgba(255,255,255,0.045);
         --panel-2: rgba(255,255,255,0.07);
         --border: rgba(255,255,255,0.10);
@@ -56,9 +56,9 @@
         margin: 0;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
         background:
-          radial-gradient(1000px 520px at 10% -10%, rgba(119,224,209,0.18), transparent 60%),
-          radial-gradient(1000px 520px at 100% 0%, rgba(139,220,255,0.14), transparent 62%),
-          linear-gradient(180deg, var(--bg), var(--bg-2));
+          radial-gradient(1000px 520px at 10% -10%, rgba(119,224,209,0.14), transparent 60%),
+          radial-gradient(1000px 520px at 100% 0%, rgba(139,220,255,0.10), transparent 62%),
+          var(--bg);
         color: var(--text);
         line-height: 1.58;
       }
@@ -163,7 +163,10 @@
         cursor: pointer;
       }
 
-      .hero { padding: 54px 0 34px; }
+      .hero {
+        padding: 54px 0 34px;
+        background: linear-gradient(180deg, var(--bg), var(--bg-2));
+      }
       .heroGrid {
         display: grid;
         grid-template-columns: 1fr;
@@ -283,6 +286,15 @@
         font-weight: 760;
       }
       .section { padding: 30px 0; }
+      #services {
+        background: linear-gradient(180deg, var(--bg-2), var(--bg));
+      }
+      #tvac {
+        background: linear-gradient(180deg, var(--bg), var(--bg-2));
+      }
+      #faq {
+        background: linear-gradient(180deg, var(--bg-2), var(--bg));
+      }
       .frame { position: relative; overflow: hidden; }
       .frame::before {
         content: "";
@@ -330,7 +342,10 @@
       .faqGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
       details.faqItem summary { cursor: pointer; list-style: none; font-weight: 680; }
       .faqA { margin-top: 10px; color: var(--muted); font-size: 14px; }
-      .ctaBand { padding: 44px 0 54px; }
+      .ctaBand {
+        padding: 44px 0 54px;
+        background: linear-gradient(180deg, var(--bg), var(--bg-2));
+      }
       .ctaPanel {
         padding: 28px;
         border-radius: 24px;
@@ -342,6 +357,7 @@
         border-top: 1px solid rgba(255,255,255,0.08);
         padding: 24px 0 32px;
         text-align: center;
+        background: linear-gradient(180deg, var(--bg-2), var(--bg));
       }
       .footLine { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
       .footDisc { max-width: 860px; margin: 0 auto; font-size: 13px; line-height: 1.65; color: var(--muted-2); }
@@ -377,7 +393,6 @@
           <div class="navLinks">
             <a class="pill" href="#services">Advisory</a>
             <a class="pill" href="#tvac">TVAC</a>
-            <a class="pill" href="#engagements">Engagements</a>
             <button class="themeBtn" id="themeBtn" aria-label="Toggle theme">🌙</button>
             <a class="pill pillStrong" href="#contact">Book an intro call →</a>
           </div>
@@ -421,9 +436,36 @@
           <p class="lead">Astoval is positioned as a high-trust advisory firm focused on asset tokenization strategy, structuring, and execution design.</p>
 
           <div class="grid3" style="margin-top:18px;">
-            <div class="serviceCard"><div class="serviceIcon">◫</div><h3>Tokenization strategy</h3><p class="small">Assess where tokenization fits, where it does not, and what commercial logic would justify proceeding.</p><ul class="mutedList"><li>Opportunity framing</li><li>Use-case prioritization</li><li>Board-level decision support</li></ul></div>
-            <div class="serviceCard"><div class="serviceIcon">◇</div><h3>Structuring & design</h3><p class="small">Clarify jurisdiction, wrapper, investor scope, custody, venue, workflow, governance, and service-provider architecture.</p><ul class="mutedList"><li>Structure options</li><li>Operating model design</li><li>Risk-aware sequencing</li></ul></div>
-            <div class="serviceCard"><div class="serviceIcon">△</div><h3>Execution readiness</h3><p class="small">Turn concepts into practical next steps, internal alignment, procurement logic, partner briefs, and launch roadmaps.</p><ul class="mutedList"><li>Roadmaps & milestones</li><li>Vendor/workstream definition</li><li>Stakeholder materials</li></ul></div>
+            <div class="serviceCard">
+              <div class="serviceIcon">◫</div>
+              <h3>Tokenization strategy</h3>
+              <p class="small">Assess where tokenization fits, where it does not, and what commercial logic would justify proceeding.</p>
+              <ul class="mutedList">
+                <li>Opportunity framing</li>
+                <li>Use-case prioritization</li>
+                <li>Board-level decision support</li>
+              </ul>
+            </div>
+            <div class="serviceCard">
+              <div class="serviceIcon">◇</div>
+              <h3>Structuring & design</h3>
+              <p class="small">Clarify jurisdiction, wrapper, investor scope, custody, venue, workflow, governance, and service-provider architecture.</p>
+              <ul class="mutedList">
+                <li>Structure options</li>
+                <li>Operating model design</li>
+                <li>Risk-aware sequencing</li>
+              </ul>
+            </div>
+            <div class="serviceCard">
+              <div class="serviceIcon">△</div>
+              <h3>Execution readiness</h3>
+              <p class="small">Turn concepts into practical next steps, internal alignment, procurement logic, partner briefs, and launch roadmaps.</p>
+              <ul class="mutedList">
+                <li>Roadmaps & milestones</li>
+                <li>Vendor/workstream definition</li>
+                <li>Stakeholder materials</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -437,28 +479,40 @@
           <p class="lead">TVAC is Astoval’s structured SaaS platform for evaluating whether tokenization creates real added value before teams commit time, cost, and execution effort.</p>
 
           <div class="grid3" style="margin-top:18px;">
-            <div class="serviceCard"><div class="serviceIcon">◫</div><h3>Feasibility analysis</h3><p class="small">Structured evaluation of whether tokenization adds meaningful value in a specific case.</p><ul class="mutedList"><li>Opportunity assessment</li><li>Cost and risk perspective</li><li>Decision-support verdicts</li></ul></div>
-            <div class="serviceCard"><div class="serviceIcon">◇</div><h3>Board-ready reports</h3><p class="small">Detailed outputs designed to support internal discussion, prioritization, and next-step planning.</p><ul class="mutedList"><li>Clear scoring logic</li><li>Structured findings</li><li>Action-oriented conclusions</li></ul></div>
-            <div class="serviceCard"><div class="serviceIcon">△</div><h3>Independent decision support</h3><p class="small">TVAC is built to assess tokenization critically, not to recommend tokenization by default.</p><ul class="mutedList"><li>Informational use only</li><li>No automatic bias</li><li>Focused on real added value</li></ul></div>
+            <div class="serviceCard">
+              <div class="serviceIcon">◫</div>
+              <h3>Feasibility analysis</h3>
+              <p class="small">Structured evaluation of whether tokenization adds meaningful value in a specific case.</p>
+              <ul class="mutedList">
+                <li>Opportunity assessment</li>
+                <li>Cost and risk perspective</li>
+                <li>Decision-support verdicts</li>
+              </ul>
+            </div>
+            <div class="serviceCard">
+              <div class="serviceIcon">◇</div>
+              <h3>Board-ready reports</h3>
+              <p class="small">Detailed outputs designed to support internal discussion, prioritization, and next-step planning.</p>
+              <ul class="mutedList">
+                <li>Clear scoring logic</li>
+                <li>Structured findings</li>
+                <li>Action-oriented conclusions</li>
+              </ul>
+            </div>
+            <div class="serviceCard">
+              <div class="serviceIcon">△</div>
+              <h3>Independent decision support</h3>
+              <p class="small">TVAC is built to assess tokenization critically, not to recommend tokenization by default.</p>
+              <ul class="mutedList">
+                <li>Informational use only</li>
+                <li>No automatic bias</li>
+                <li>Focused on real added value</li>
+              </ul>
+            </div>
           </div>
 
           <div class="heroButtons">
             <a class="btn btnPrimary" href="https://tvacai.com" target="_blank" rel="noreferrer">Go to TVAC →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="engagements">
-      <div class="container">
-        <div class="frame">
-          <p class="eyebrow">Engagement models</p>
-          <h2>Three clear ways to buy Astoval advisory</h2>
-          <p class="lead">This keeps the advisory-friendly commercial structure while using the refined C3-style brand lockup in the header.</p>
-          <div class="pricingGrid">
-            <div class="priceCard"><div class="miniKicker">Sprint</div><h3>Discovery & qualification</h3><div class="price"><strong>2–3 weeks</strong><span>fixed-scope</span></div><p class="small">For early-stage tokenization opportunities that need fast strategic clarity.</p><ul class="mutedList"><li>Case framing</li><li>Credibility review</li><li>Initial pathway recommendation</li></ul></div>
-            <div class="priceCard featured"><div class="miniKicker">Flagship</div><h3>Structuring & roadmap</h3><div class="price"><strong>4–8 weeks</strong><span>core advisory</span></div><p class="small">For teams that need structure options, roadmap sequencing, and partner/workstream alignment.</p><ul class="mutedList"><li>Design alternatives</li><li>Governance and workflow logic</li><li>Execution roadmap</li></ul></div>
-            <div class="priceCard"><div class="miniKicker">Ongoing</div><h3>Strategic retained advisory</h3><div class="price"><strong>Monthly</strong><span>for active pipelines</span></div><p class="small">For platforms, funds, advisors, or institutions evaluating multiple initiatives over time.</p><ul class="mutedList"><li>Regular strategic input</li><li>Case reviews</li><li>Selective specialist support</li></ul></div>
           </div>
         </div>
       </div>
@@ -470,10 +524,22 @@
           <p class="eyebrow">FAQ</p>
           <h2>Questions the parent-company site should answer</h2>
           <div class="faqGrid">
-            <details class="faqItem" open><summary>What is Astoval?</summary><div class="faqA">Astoval is a tokenization-focused advisory firm and the parent brand behind TVAC, its structured SaaS decision-support platform.</div></details>
-            <details class="faqItem"><summary>Who is this for?</summary><div class="faqA">Asset owners, issuers, financial institutions, service providers, platforms, and investors evaluating real tokenization opportunities.</div></details>
-            <details class="faqItem"><summary>What does Astoval offer?</summary><div class="faqA">Astoval offers both advisory services and TVAC, a SaaS platform that evaluates whether tokenization creates meaningful added value in a specific case.</div></details>
-            <details class="faqItem"><summary>How do engagements start?</summary><div class="faqA">Typically with a short discovery conversation, while some teams may begin by exploring TVAC first.</div></details>
+            <details class="faqItem" open>
+              <summary>What is Astoval?</summary>
+              <div class="faqA">Astoval is a tokenization-focused advisory firm and the parent brand behind TVAC, its structured SaaS decision-support platform.</div>
+            </details>
+            <details class="faqItem">
+              <summary>Who is this for?</summary>
+              <div class="faqA">Asset owners, issuers, financial institutions, service providers, platforms, and investors evaluating real tokenization opportunities.</div>
+            </details>
+            <details class="faqItem">
+              <summary>What does Astoval offer?</summary>
+              <div class="faqA">Astoval offers both advisory services and TVAC, a SaaS platform that evaluates whether tokenization creates meaningful added value in a specific case.</div>
+            </details>
+            <details class="faqItem">
+              <summary>How do engagements start?</summary>
+              <div class="faqA">Typically with a short discovery conversation, while some teams may begin by exploring TVAC first.</div>
+            </details>
           </div>
         </div>
       </div>
@@ -489,9 +555,6 @@
             <a class="btn btnPrimary" href="mailto:michael@tvacai.com?subject=Astoval%20website%20inquiry">michael@tvacai.com</a>
             <a class="btn" href="https://tvacai.com" target="_blank" rel="noreferrer">Visit TVAC →</a>
           </div>
-          <div class="footDisc" style="margin-top:18px;">
-            Astoval and TVAC provide informational decision-support only and do not constitute legal, financial, investment, or other professional advice. Any assessment or analysis should be independently reviewed before decisions are made.
-          </div>
         </div>
       </div>
     </section>
@@ -499,7 +562,9 @@
     <footer>
       <div class="container">
         <p class="footLine">Astoval — assessing tokenization value</p>
-        <div class="footDisc">Astoval combines advisory services with TVAC, a structured SaaS platform for evaluating tokenization value.</div>
+        <div class="footDisc">
+          Astoval and TVAC provide informational decision-support only and do not constitute legal, financial, investment, or other professional advice. Any assessment or analysis should be independently reviewed before decisions are made.
+        </div>
         <div class="copyright">© 2026 Astoval</div>
       </div>
     </footer>
