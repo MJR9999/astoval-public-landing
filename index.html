@@ -446,8 +446,72 @@
         background: linear-gradient(180deg, var(--bg-2), var(--bg));
       }
       .footLine { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
+      .footerContact { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+      .footerContact a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
       .footDisc { max-width: 860px; margin: 0 auto; font-size: 13px; line-height: 1.65; color: var(--muted-2); }
+      .legalLinks { margin-top: 14px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 10px; color: var(--muted); font-size: 13px; }
+      .legalButton {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--accent);
+        font: inherit;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .legalButton:hover { color: var(--accent-3); }
       .copyright { margin-top: 12px; color: var(--muted-2); font-size: 12.5px; }
+      .modalOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(0,0,0,0.66);
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+      }
+      .modalOverlay.active { display: flex; }
+      .modalPanel {
+        width: min(760px, 100%);
+        max-height: min(82vh, 840px);
+        overflow: auto;
+        padding: 24px;
+        border-radius: 20px;
+        background: var(--bg-2);
+        border: 1px solid var(--border-2);
+        box-shadow: var(--shadow);
+        color: var(--text);
+      }
+      .modalHead {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 12px;
+      }
+      .modalTitle { margin: 0; font-size: 24px; letter-spacing: -0.3px; }
+      .modalClose {
+        width: 34px;
+        height: 34px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        color: var(--muted);
+        cursor: pointer;
+        flex: 0 0 auto;
+      }
+      .modalClose:hover { color: var(--text); }
+      .modalText { color: var(--muted); font-size: 14px; line-height: 1.7; }
+      .modalText h3 { margin-top: 18px; font-size: 16px; color: var(--text); }
+      .modalText p { margin: 8px 0; }
+      .modalText ul { margin: 8px 0 8px 20px; padding: 0; }
+      .modalText a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
       @media (max-width: 1080px) {
         :root { --h1: 52px; --h2: 32px; }
@@ -511,7 +575,7 @@
 
             <div class="heroButtons">
               <a class="btn btnPrimary" href="#tvac">Explore TVAC →</a>
-              <a class="btn" href="mailto:michael@tvacai.com?subject=Request%20sample%20TVAC%20report">Request sample report</a>
+              <a class="btn" href="mailto:support@astoval.com?subject=Request%20sample%20TVAC%20report">Request sample report</a>
               <a class="btn" href="#contact">Discuss partner/advisory access</a>
             </div>
           </div>
@@ -673,8 +737,8 @@
 
           <div class="heroButtons">
             <a class="btn btnPrimary" href="https://tvacai.com" target="_blank" rel="noreferrer">Go to TVAC →</a>
-            <a class="btn" href="mailto:michael@tvacai.com?subject=Use%20TVAC%20with%20clients">Use TVAC with clients</a>
-            <a class="btn" href="mailto:michael@tvacai.com?subject=Discuss%20partner%20access">Discuss partner access</a>
+            <a class="btn" href="mailto:support@astoval.com?subject=Use%20TVAC%20with%20clients">Use TVAC with clients</a>
+            <a class="btn" href="mailto:support@astoval.com?subject=Discuss%20partner%20access">Discuss partner access</a>
           </div>
         </div>
       </div>
@@ -688,7 +752,11 @@
           <div class="faqGrid">
             <details class="faqItem" open>
               <summary>What is Astoval?</summary>
-              <div class="faqA">Astoval is an independent tokenization intelligence company and the parent brand behind TVAC, its structured decision-support engine. Astoval also provides selective advisory support for serious cases that need interpretation, scenario design or implementation readiness.</div>
+              <div class="faqA">Astoval is a founder-led specialist initiative focused on pre-tokenization intelligence and decision support. TVAC is Astoval’s structured decision-support engine for assessing when tokenization creates real added value — and when it mostly adds cost, risk and complexity.</div>
+            </details>
+            <details class="faqItem">
+              <summary>Who is behind Astoval?</summary>
+              <div class="faqA">Astoval is led by Michael Juul Rugaard, author of <i>Asset Tokenization</i> and long-time analyst of the tokenization industry. Where relevant, Astoval may work selectively with external domain experts, advisors and partners.</div>
             </details>
             <details class="faqItem">
               <summary>Who is this for?</summary>
@@ -697,6 +765,10 @@
             <details class="faqItem">
               <summary>What does Astoval offer?</summary>
               <div class="faqA">Astoval offers TVAC as its core assessment product and selective advisory support around interpretation, scenario design, partner readiness, portfolio screening and decision materials.</div>
+            </details>
+            <details class="faqItem">
+              <summary>Is this legal, financial or investment advice?</summary>
+              <div class="faqA">No. Astoval and TVAC provide informational analysis and decision-support only. Tokenization decisions should be independently reviewed with qualified legal, financial, tax, regulatory, technical and other relevant professionals.</div>
             </details>
             <details class="faqItem">
               <summary>How do engagements start?</summary>
@@ -710,13 +782,13 @@
     <section class="ctaBand" id="contact">
       <div class="container">
         <div class="ctaPanel">
-          <p class="eyebrow">Contact</p>
+          <p class="eyebrow">Contact & Support</p>
           <h2>Discuss TVAC, partner access or advisory support</h2>
           <p class="lead">Use Astoval when you need an independent, formula-first view of whether tokenization creates real added value before committing to platform selection, legal structuring or implementation spend.</p>
           <div class="btnRow">
-            <a class="btn btnPrimary" href="mailto:michael@tvacai.com?subject=Astoval%20intro%20call">Book an intro call</a>
-            <a class="btn" href="mailto:michael@tvacai.com?subject=Request%20sample%20TVAC%20report">Request sample report</a>
-            <a class="btn" href="mailto:michael@tvacai.com?subject=Discuss%20portfolio%20screening">Discuss portfolio screening</a>
+            <a class="btn btnPrimary" href="mailto:support@astoval.com?subject=Astoval%20intro%20call">Book an intro call</a>
+            <a class="btn" href="mailto:support@astoval.com?subject=Request%20sample%20TVAC%20report">Request sample report</a>
+            <a class="btn" href="mailto:support@astoval.com?subject=Discuss%20portfolio%20screening">Discuss portfolio screening</a>
             <a class="btn" href="https://tvacai.com" target="_blank" rel="noreferrer">Visit TVAC →</a>
           </div>
         </div>
@@ -725,13 +797,103 @@
 
     <footer>
       <div class="container">
-        <p class="footLine">Astoval — assessing tokenization value</p>
-        <div class="footDisc">
-          Astoval and TVAC provide informational decision-support only and do not constitute legal, financial, investment, or other professional advice. Any assessment or analysis should be independently reviewed before decisions are made.
+        <p class="footLine"><b>Contact & Support</b></p>
+        <div class="footerContact">
+          For enquiries about Astoval, TVAC, sample reports, advisory access, or partnerships:<br />
+          <a href="mailto:support@astoval.com">support@astoval.com</a><br />
+          <span class="small">Support is provided by email. Response times may vary.</span>
         </div>
-        <div class="copyright">© 2026 Astoval</div>
+        <div class="footDisc">
+          <b>Disclaimer.</b> Astoval and TVAC provide informational analysis and decision-support only. Nothing on this website constitutes legal, financial, investment, tax, regulatory, valuation, credit, yield, or suitability advice. Tokenization decisions should be independently reviewed with qualified professionals before acting.
+        </div>
+        <div class="legalLinks" aria-label="Legal links">
+          <button class="legalButton" type="button" data-modal-open="termsModal">Terms of Service</button>
+          <span>·</span>
+          <button class="legalButton" type="button" data-modal-open="privacyModal">Privacy Policy</button>
+          <span>·</span>
+          <button class="legalButton" type="button" data-modal-open="disclaimerModal">Disclaimer</button>
+        </div>
+        <div class="copyright">© 2026 Michael Juul Rugaard / Astoval · All rights reserved.</div>
       </div>
     </footer>
+
+
+    <div class="modalOverlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+      <div class="modalPanel">
+        <div class="modalHead">
+          <h2 class="modalTitle" id="termsTitle">Terms of Service</h2>
+          <button class="modalClose" type="button" data-modal-close aria-label="Close">×</button>
+        </div>
+        <div class="modalText">
+          <p><b>Last updated:</b> June 2026</p>
+          <h3>1. Scope</h3>
+          <p>These Terms of Service govern your use of the Astoval website and related public information made available through this website. Use of TVAC, reports, paid services, subscriptions, advisory work, or other products may be subject to additional or separate terms.</p>
+          <h3>2. Informational purpose only</h3>
+          <p>Astoval provides informational analysis, market-oriented commentary, methodology descriptions, and decision-support information related to tokenization. Nothing on this website constitutes legal, financial, investment, tax, regulatory, valuation, credit, yield, suitability, technical architecture, or other professional advice.</p>
+          <h3>3. No professional relationship</h3>
+          <p>Contacting Astoval, requesting a sample report, booking a call, or discussing a potential project does not create a client, advisory, fiduciary, legal, investment, or professional relationship unless a separate written agreement has been entered into.</p>
+          <h3>4. No guarantees</h3>
+          <p>Astoval does not guarantee that tokenization will be suitable, commercially successful, legally feasible, technically feasible, investor-ready, regulatorily approved, liquid, profitable, or otherwise appropriate for any specific project. Decisions must be independently reviewed with qualified professionals.</p>
+          <h3>5. Website availability and accuracy</h3>
+          <p>The website is provided on a best-efforts basis. Content may be updated, corrected, removed, interrupted, or changed without notice. Astoval does not warrant that the website is error-free, uninterrupted, complete, or current at all times.</p>
+          <h3>6. Intellectual property</h3>
+          <p>The Astoval name, TVAC name, methodology descriptions, website content, text, structure, design, formulas, reports, and related materials are owned by or licensed to Astoval/Michael Juul Rugaard unless otherwise stated. You may not copy, republish, resell, reproduce, scrape, or commercially exploit the material without prior written permission.</p>
+          <h3>7. Third-party links</h3>
+          <p>This website may link to third-party websites, tools, platforms, publications, or services. Astoval is not responsible for third-party content, security, availability, accuracy, policies, or practices.</p>
+          <h3>8. Limitation of liability</h3>
+          <p>To the maximum extent permitted by law, Astoval and Michael Juul Rugaard shall not be liable for losses, damages, costs, business interruption, missed opportunities, investment outcomes, regulatory outcomes, implementation choices, or other consequences arising from use of, or reliance on, this website or related public materials.</p>
+          <h3>9. Contact</h3>
+          <p>For questions about these terms, contact <a href="mailto:support@astoval.com">support@astoval.com</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modalOverlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+      <div class="modalPanel">
+        <div class="modalHead">
+          <h2 class="modalTitle" id="privacyTitle">Privacy Policy</h2>
+          <button class="modalClose" type="button" data-modal-close aria-label="Close">×</button>
+        </div>
+        <div class="modalText">
+          <p><b>Last updated:</b> June 2026</p>
+          <h3>1. Who operates this website</h3>
+          <p>For the current pre-launch/service phase, Astoval is operated by Michael Juul Rugaard / Astoval. This may later be updated to Astoval ApS or another legal entity if the service is formally transferred.</p>
+          <p>Contact: <a href="mailto:support@astoval.com">support@astoval.com</a>.</p>
+          <h3>2. What data may be processed</h3>
+          <p>This website is primarily informational. If you contact Astoval by email, request a sample report, book an intro call, discuss advisory access, or otherwise interact with Astoval, the data processed may include your name, email address, organisation, role, message content, meeting details, and any information you choose to share.</p>
+          <p>The website may also use basic technical data necessary to operate and secure the site, such as browser type, device information, approximate location derived from IP address, page requests, timestamps, error logs, and local browser settings such as theme preference.</p>
+          <h3>3. Why the data is processed</h3>
+          <p>Data may be processed to respond to enquiries, provide requested information, arrange calls, discuss potential services or partnerships, maintain website security, operate the website, improve content, manage business records, and comply with legal obligations.</p>
+          <h3>4. Service providers</h3>
+          <p>Astoval may use third-party service providers for hosting, email, domain management, website operation, meeting tools, storage, security, analytics if enabled, and related business administration. These providers may process data only as necessary to provide their services.</p>
+          <h3>5. Data retention</h3>
+          <p>Data is retained only as long as reasonably necessary for the relevant purpose, including responding to enquiries, maintaining business records, handling follow-up, protecting security, and complying with legal or accounting obligations.</p>
+          <h3>6. Your rights</h3>
+          <p>Depending on applicable law, you may have rights to request access, correction, deletion, restriction, portability, or objection to certain processing of your personal data. You may also have the right to lodge a complaint with a supervisory authority.</p>
+          <h3>7. Security</h3>
+          <p>Astoval uses reasonable technical and organisational measures to protect the website and any data processed through it. However, no online service can guarantee absolute security.</p>
+          <h3>8. Contact</h3>
+          <p>For privacy-related questions, contact <a href="mailto:support@astoval.com">support@astoval.com</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modalOverlay" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
+      <div class="modalPanel">
+        <div class="modalHead">
+          <h2 class="modalTitle" id="disclaimerTitle">Disclaimer</h2>
+          <button class="modalClose" type="button" data-modal-close aria-label="Close">×</button>
+        </div>
+        <div class="modalText">
+          <p><b>Last updated:</b> June 2026</p>
+          <p>Astoval and TVAC provide informational analysis and decision-support only. Nothing on this website, in TVAC, in sample reports, in methodology descriptions, or in related communications constitutes legal, financial, investment, tax, regulatory, valuation, credit, yield, suitability, technical architecture, or other professional advice.</p>
+          <p>Any tokenization assessment, report, score, verdict, scenario, observation, roadmap, commercial comment, or implementation-related statement should be treated as structured decision-support input only. It must not be relied upon as a substitute for qualified professional advice tailored to the relevant asset, jurisdiction, investor base, transaction structure, legal framework, custody model, payment design, settlement model, tax position, and operational setup.</p>
+          <p>Astoval and TVAC do not validate projected returns, liquidity, market demand, legal compliance, regulatory approval, investor suitability, tax treatment, valuation, credit quality, yield, platform suitability, or commercial feasibility. Outcomes depend on user-provided information, assumptions, market conditions, execution choices, service-provider readiness, counterparty requirements, regulatory developments, and other factors outside Astoval’s control.</p>
+          <p>Users remain solely responsible for all commercial, legal, regulatory, operational, technical, financial, and strategic decisions related to any proposed tokenization initiative. Independent advice from qualified professionals should always be obtained before acting.</p>
+          <p>For questions, contact <a href="mailto:support@astoval.com">support@astoval.com</a>.</p>
+        </div>
+      </div>
+    </div>
 
     <script>
       (function () {
@@ -747,6 +909,43 @@
         btn.addEventListener('click', () => {
           const current = root.getAttribute('data-theme');
           setTheme(current === 'light' ? 'dark' : 'light');
+        });
+      })();
+
+      (function () {
+        const openButtons = document.querySelectorAll('[data-modal-open]');
+        const closeButtons = document.querySelectorAll('[data-modal-close]');
+        const overlays = document.querySelectorAll('.modalOverlay');
+
+        function closeAllModals() {
+          overlays.forEach((overlay) => overlay.classList.remove('active'));
+          document.body.style.overflow = '';
+        }
+
+        function openModal(id) {
+          closeAllModals();
+          const modal = document.getElementById(id);
+          if (!modal) return;
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        openButtons.forEach((button) => {
+          button.addEventListener('click', () => openModal(button.getAttribute('data-modal-open')));
+        });
+
+        closeButtons.forEach((button) => {
+          button.addEventListener('click', closeAllModals);
+        });
+
+        overlays.forEach((overlay) => {
+          overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) closeAllModals();
+          });
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeAllModals();
         });
       })();
     </script>
