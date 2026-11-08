@@ -40,9 +40,9 @@
         --text: rgba(255,255,255,0.93);
         --muted: rgba(255,255,255,0.70);
         --muted-2: rgba(255,255,255,0.54);
-        --accent: #77e0d1;
-        --accent-2: #8bdcff;
-        --accent-3: #d9fff7;
+        --accent: #39bfd0;
+        --accent-2: #73d7e2;
+        --accent-3: #d9f6fa;
         --gold: #e8c57a;
         --ok: #5ef2b1;
         --warn: #ffb56b;
@@ -76,8 +76,8 @@
         margin: 0;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
         background:
-          radial-gradient(1000px 520px at 10% -10%, rgba(119,224,209,0.14), transparent 60%),
-          radial-gradient(1000px 520px at 100% 0%, rgba(139,220,255,0.10), transparent 62%),
+          radial-gradient(1000px 520px at 10% -10%, rgba(57,191,208,0.14), transparent 60%),
+          radial-gradient(1000px 520px at 100% 0%, rgba(115,215,226,0.10), transparent 62%),
           var(--bg);
         color: var(--text);
         line-height: 1.58;
@@ -114,6 +114,11 @@
         gap: 4px;
         min-width: 240px;
       }
+      /* The approved Astoval logo files — switch only with the site theme. */
+      .astovalBrandLogo { display: block; width: 190px; max-width: 100%; height: auto; }
+      .astovalBrandLogoLight { display: none; }
+      [data-theme="light"] .astovalBrandLogoDark { display: none; }
+      [data-theme="light"] .astovalBrandLogoLight { display: block; }
       .brandRow {
         display: flex;
         align-items: center;
@@ -170,7 +175,7 @@
         border: none;
         color: #08211f;
         background: linear-gradient(90deg, var(--accent-2), var(--accent));
-        box-shadow: 0 12px 30px rgba(119,224,209,0.18);
+        box-shadow: 0 12px 30px rgba(57,191,208,0.18);
       }
       .themeBtn {
         width: 40px;
@@ -300,8 +305,8 @@
         border-radius: 14px;
         display: grid;
         place-items: center;
-        background: linear-gradient(135deg, rgba(119,224,209,0.18), rgba(139,220,255,0.10));
-        border: 1px solid rgba(119,224,209,0.26);
+        background: linear-gradient(135deg, rgba(57,191,208,0.18), rgba(115,215,226,0.10));
+        border: 1px solid rgba(57,191,208,0.26);
         color: var(--accent-3);
         font-weight: 760;
       }
@@ -323,7 +328,7 @@
         left: 0;
         right: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--accent), rgba(119,224,209,0));
+        background: linear-gradient(90deg, var(--accent), rgba(57,191,208,0));
       }
       .grid3, .pricingGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
       .serviceCard, .metricCard, .faqItem, .priceCard { padding: 18px; }
@@ -335,8 +340,8 @@
         display: grid;
         place-items: center;
         color: var(--accent-3);
-        background: linear-gradient(135deg, rgba(119,224,209,0.18), rgba(139,220,255,0.10));
-        border: 1px solid rgba(119,224,209,0.26);
+        background: linear-gradient(135deg, rgba(57,191,208,0.18), rgba(115,215,226,0.10));
+        border: 1px solid rgba(57,191,208,0.26);
         font-size: 20px;
       }
       .mutedList { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
@@ -387,7 +392,7 @@
         justify-content: center;
       }
 
-      .priceCard.featured { border-color: rgba(119,224,209,0.36); background: linear-gradient(180deg, rgba(119,224,209,0.10), rgba(119,224,209,0.03)); }
+      .priceCard.featured { border-color: rgba(57,191,208,0.36); background: linear-gradient(180deg, rgba(57,191,208,0.10), rgba(57,191,208,0.03)); }
       .price { display: flex; align-items: baseline; gap: 8px; margin: 12px 0 4px; }
       .price strong { font-size: 34px; letter-spacing: -0.5px; }
       .faqGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
@@ -400,8 +405,8 @@
       .ctaPanel {
         padding: 28px;
         border-radius: 24px;
-        border: 1px solid rgba(119,224,209,0.30);
-        background: linear-gradient(135deg, rgba(119,224,209,0.11), rgba(139,220,255,0.06), rgba(255,255,255,0.02));
+        border: 1px solid rgba(57,191,208,0.30);
+        background: linear-gradient(135deg, rgba(57,191,208,0.11), rgba(115,215,226,0.06), rgba(255,255,255,0.02));
         box-shadow: var(--shadow);
       }
       footer {
@@ -499,11 +504,8 @@
       <div class="container">
         <div class="navInner">
           <div class="brandWrap">
-            <div class="brandRow">
-              <div class="brandName">Astoval</div>
-              <div class="brandDivider"></div>
-            </div>
-            <div class="brandPayoff">assessing tokenization value</div>
+            <img class="astovalBrandLogo astovalBrandLogoDark" src="astoval-logo-dark.png" alt="Astoval — Assessing Tokenization Value" />
+            <img class="astovalBrandLogo astovalBrandLogoLight" src="astoval-logo-light.png" alt="" aria-hidden="true" />
           </div>
 
           <div class="navLinks">
